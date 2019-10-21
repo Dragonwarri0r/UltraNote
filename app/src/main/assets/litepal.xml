@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<litepal>
+    <dbname value="ultranote"/>
+    <version value="1"/>
+    <list>
+        <mapping class="com.dragonwarrior.ultranote.db.Note"/>
+        <mapping class="com.dragonwarrior.ultranote.db.Page"/>
+        <mapping class="com.dragonwarrior.ultranote.db.PageItem"/>
+    </list>
+</litepal>
