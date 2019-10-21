@@ -41,7 +41,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         Page page = mPageList.get(position);
         holder.textView.setText(page.getPageName());
-        holder.textView.setBackgroundColor(page.getPageColor());
+        holder.textView.setBackgroundResource(R.drawable.page_selector);
     }
 
     @Override
