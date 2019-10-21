@@ -3,15 +3,17 @@
     package="com.dragonwarrior.ultranote">
 
     <application
-        android:name="org.litepal.LitePalApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PageAddDialog"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
+        <activity android:name=".NoteAddDialog"></activity>
+        <activity
+            android:name=".PageAddDialog"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

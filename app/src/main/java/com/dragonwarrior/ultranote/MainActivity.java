@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.dragonwarrior.ultranote.adapter.PageAdapter;
+import com.dragonwarrior.ultranote.db.Note;
 import com.dragonwarrior.ultranote.db.Page;
+import com.dragonwarrior.ultranote.db.PageItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -19,7 +21,9 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.litepal.LitePalApplication;
 import org.litepal.crud.DataSupport;
+import org.litepal.util.Const;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,17 +33,32 @@ public class MainActivity extends AppCompatActivity {
     Button btnPageAdd;
     private List<Page> pageList = new ArrayList<>();
     RecyclerView recyclerViewPage;
+    MyApplication myApplication= (MyApplication)getApplication();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LitePalApplication.initialize(this);
+
+        myApplication.setPageNowId(0);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,NoteAddDialog.class);
+                startActivity(intent);
+            }
+        });
+
+        FloatingActionButton deleteAll = findViewById(R.id.delete_all);
+        deleteAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 DataSupport.deleteAll(Page.class);
+                DataSupport.deleteAll(PageItem.class);
+                DataSupport.deleteAll(Note.class);
                 Snackbar.make(view, "一键自毁成功", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
