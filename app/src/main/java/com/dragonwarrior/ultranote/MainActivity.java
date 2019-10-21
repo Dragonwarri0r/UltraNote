@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnPageAdd;
     private List<Page> pageList = new ArrayList<>();
     RecyclerView recyclerViewPage;
-    MyApplication myApplication= (MyApplication)getApplication();
+    MyApplication myApplication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         LitePalApplication.initialize(this);
 
+        myApplication = (MyApplication)getApplication();
         myApplication.setPageNowId(0);
 
         FloatingActionButton fab = findViewById(R.id.fab);
