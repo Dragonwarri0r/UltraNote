@@ -1,6 +1,9 @@
 package com.dragonwarrior.ultranote;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.dragonwarrior.ultranote.adapter.PageAdapter;
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -34,15 +38,21 @@ public class MainActivity extends AppCompatActivity {
     private List<Page> pageList = new ArrayList<>();
     RecyclerView recyclerViewPage;
     MyApplication myApplication;
+    PageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        LitePalApplication.initialize(this);
-
         myApplication = (MyApplication)getApplication();
-        myApplication.setPageNowId(0);
+        int mode = Activity.MODE_PRIVATE;
+        SharedPreferences pageMessage = getSharedPreferences("file",mode);
+        myApplication.setPageNowId(pageMessage.getLong("pageNum",0));
+
+
+        super.onCreate(savedInstanceState);
+        LitePalApplication.initialize(MainActivity.this);
+        setContentView(R.layout.activity_main);
+
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -79,41 +89,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     protected void onResume(){
         super.onResume();
         initPages();
     }
 
-    private void initPages(){
+    @Override
+    protected void  onStop(){
+        super.onStop();
+        long id = myApplication.getPageNowId();
+        SharedPreferences pagSetting = getSharedPreferences("file", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pagSetting.edit();
+        editor.putLong("pageNum",id);
+        editor.commit();
+    }
+
+    public void initPages(){
         pageList = DataSupport.findAll(Page.class);
         //Toast.makeText(MainActivity.this, pageList.get(0).getPageName(), Toast.LENGTH_SHORT).show();
         recyclerViewPage = findViewById(R.id.page_select);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewPage.setLayoutManager(layoutManager);
-        PageAdapter adapter = new PageAdapter(pageList);
+        adapter = new PageAdapter(pageList);
         recyclerViewPage.setAdapter(adapter);
     }
 

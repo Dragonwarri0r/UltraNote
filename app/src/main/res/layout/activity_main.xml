@@ -18,12 +18,14 @@
             android:layout_height="?attr/actionBarSize"/>
 
 
-
-    <FrameLayout
-        android:id="@+id/fragment_note"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <fragment
+            android:id="@+id/choose_area_fragment"
+            android:name="com.dragonwarrior.ultranote.NoteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
+
+
 
     <Button
         android:layout_gravity="top|end"

@@ -17,8 +17,9 @@
     <EditText
         android:hint="在这里输入标题"
             android:id="@+id/note_name"
+        android:layout_gravity="center"
             android:minHeight="30dp"
-            android:minWidth="200dp"
+            android:minWidth="100dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     <EditText
@@ -26,8 +27,8 @@
         android:gravity="bottom"
         android:id="@+id/note_body"
         android:minHeight="200dp"
-        android:minWidth="200dp"
-        android:maxWidth="200dp"
+        android:minWidth="250dp"
+        android:maxWidth="250dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
         <RadioGroup

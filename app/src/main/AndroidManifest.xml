@@ -9,11 +9,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".NoteAddDialog"></activity>
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".SavePageNum"></activity>
+        <activity android:name=".FlushActivity" />
+        <activity
+            android:name=".NoteAddDialog"
+            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
             android:name=".PageAddDialog"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
