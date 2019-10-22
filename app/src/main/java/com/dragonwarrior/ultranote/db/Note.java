@@ -6,10 +6,19 @@ import java.util.Date;
 
 public class Note extends DataSupport {
     private long id;
+    private long pageId;
     private String noteTitle;
     private String noteBody;
     private int noteColor;
     private Date noteOutDate;
+
+    public long getPageId() {
+        return pageId;
+    }
+
+    public void setPageId(long pageId) {
+        this.pageId = pageId;
+    }
 
     public long getId() {
         return id;

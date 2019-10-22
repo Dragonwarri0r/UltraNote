@@ -9,7 +9,6 @@ import android.os.Bundle;
 import com.dragonwarrior.ultranote.adapter.PageAdapter;
 import com.dragonwarrior.ultranote.db.Note;
 import com.dragonwarrior.ultranote.db.Page;
-import com.dragonwarrior.ultranote.db.PageItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -68,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DataSupport.deleteAll(Page.class);
-                DataSupport.deleteAll(PageItem.class);
                 DataSupport.deleteAll(Note.class);
                 Snackbar.make(view, "一键自毁成功", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();

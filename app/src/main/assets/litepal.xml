@@ -5,6 +5,5 @@
     <list>
         <mapping class="com.dragonwarrior.ultranote.db.Note"/>
         <mapping class="com.dragonwarrior.ultranote.db.Page"/>
-        <mapping class="com.dragonwarrior.ultranote.db.PageItem"/>
     </list>
 </litepal>

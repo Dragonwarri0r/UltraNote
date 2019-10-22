@@ -10,7 +10,6 @@ import android.widget.RadioButton;
 
 import com.dragonwarrior.ultranote.db.Note;
 import com.dragonwarrior.ultranote.db.Page;
-import com.dragonwarrior.ultranote.db.PageItem;
 
 public class NoteAddDialog extends AppCompatActivity {
 
@@ -59,17 +58,11 @@ public class NoteAddDialog extends AppCompatActivity {
                     noteColor=R.color.Blue;
                 }
                 Note note = new Note();
+                note.setPageId(pageId);
                 note.setNoteTitle(noteName);
                 note.setNoteColor(noteColor);
                 note.setNoteBody(noteB);
                 note.save();
-
-                noteId=note.getId();
-
-                PageItem pageItem = new PageItem();
-                pageItem.setNoteId(noteId);
-                pageItem.setPageId(pageId);
-                pageItem.save();
 
                 finish();
 

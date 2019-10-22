@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.dragonwarrior.ultranote.adapter.NoteAdapter;
 import com.dragonwarrior.ultranote.db.Note;
-import com.dragonwarrior.ultranote.db.PageItem;
 
 import org.litepal.crud.DataSupport;
 
@@ -68,7 +67,6 @@ public class NoteFragment extends Fragment {
     }
 
     private List<Note> noteList = new ArrayList<>();
-    private List<PageItem> pageItems = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,13 +81,8 @@ public class NoteFragment extends Fragment {
         long pageNum = myApplication.getPageNowId();
 
         Toast.makeText(getActivity(),pageNum+"!",Toast.LENGTH_SHORT).show();
-        //pageItems = DataSupport.findAll(PageItem.class,pageNum);
-        //for(int i=0;i<pageItems.size();i++){
-        //    Note note = DataSupport.find(Note.class,pageItems.get(i).getNoteId());
-        //    Toast.makeText(getActivity(),note.getNoteTitle()+"!",Toast.LENGTH_SHORT).show();
-        //    noteList.add(note);
-        //}
-        noteList = DataSupport.findAll(Note.class);
+
+        noteList = DataSupport.where(" pageId = ? ",pageNum+"").limit(65535).find(Note.class);
         View view = inflater.inflate(R.layout.fragment_note, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.notes);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
