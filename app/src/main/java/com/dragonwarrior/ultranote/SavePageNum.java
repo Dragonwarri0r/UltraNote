@@ -14,7 +14,7 @@ public class SavePageNum extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pageNum = this.getIntent().getExtras().getLong("Pagenum");
-
+        //此Activity用于设置全局的当前的页面选择值
         MyApplication myApplication = (MyApplication)getApplication();
         myApplication.setPageNowId(pageNum);
         finish();
