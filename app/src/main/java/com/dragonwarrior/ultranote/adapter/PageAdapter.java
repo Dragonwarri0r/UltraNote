@@ -47,6 +47,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.page_item,parent,false);
         final ViewHolder holder =new ViewHolder(view);
+        //注册长按点击事件，长按设置为删除
         holder.pageView.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick(View view) {
@@ -70,6 +71,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.ViewHolder> {
                 return true;
             }
         });
+        //默认点击事件
         holder.pageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

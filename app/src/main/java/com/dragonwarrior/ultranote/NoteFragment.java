@@ -77,16 +77,23 @@ public class NoteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //取到全局变量
         myApplication = (MyApplication) getActivity().getApplication();
         long pageNum = myApplication.getPageNowId();
 
+        //调试时使用的，弹出当前变量的号
         Toast.makeText(getActivity(),pageNum+"!",Toast.LENGTH_SHORT).show();
 
+        //从数据库里面取到全部的note
         noteList = DataSupport.where(" pageId = ? ",pageNum+"").limit(65535).find(Note.class);
         View view = inflater.inflate(R.layout.fragment_note, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.notes);
+        //这里取到包管理器，并且设置包管理器为瀑布流
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
+
+        //设置适配器
         NoteAdapter noteAdapter = new NoteAdapter(noteList);
         recyclerView.setAdapter(noteAdapter);
 
