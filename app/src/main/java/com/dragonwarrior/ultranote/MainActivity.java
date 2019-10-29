@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -82,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        NoteFragment noteFragment = new NoteFragment();
+
         initPages();
 
     }
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         initPages();
+
     }
 
     @Override
@@ -111,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewPage.setLayoutManager(layoutManager);
         adapter = new PageAdapter(pageList);
         recyclerViewPage.setAdapter(adapter);
+
+        NoteFragment noteFragment = new NoteFragment();
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.choose_area_fragment,noteFragment);
+        fragmentTransaction.commit();
     }
 
 
