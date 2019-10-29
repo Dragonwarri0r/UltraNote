@@ -5,4 +5,8 @@
 ### MainActivity里面的Page由RecycleView横向滚动生成
 ### Note由NoteFragment根据数据库内的数据生成
 
-![_DS](media/15424237586141/_DSC5611.jpg)
+<p>
+  ![_DS](ReadMeImg/PageAdd.jpg)
+  ![_DS](ReadMeImg/NoteAdd.jpg)
+  ![_DS](ReadMeImg/Main.jpg)
+</p>
